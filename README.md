@@ -1,0 +1,1 @@
+An app that utilizes National Parks Services API to return park results based off user inputs.

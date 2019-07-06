@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="National Park listings">
+    <title>National Parks Search</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+  <header>
+      <h1>National Parks Search</h1>
+      <form id="search-form" action="get">
+          <div class="fields-wrap">
+              <fieldset>
+                  <label for="state-input">Enter a state</label>
+                  <input id="state-input" aria-label="input state" type="text">
+              </fieldset>
+              <fieldset>
+                  <label for="results-count">Max results</label>
+                  <input id="results-count" type="number" value="10">
+              </fieldset>
+          </div>
+          <button type="submit">Find Parks</button>
+      </form>
+  </header>
+  <main>
+      <section id="results-section" class="hidden">
+          <ul id="results-list"></ul>
+      </section>
+      <p id="error-message" class="error-message"></p>
+  </main>
+</div>
+  <script src="main.js"></script>
+</body>
+</html>
