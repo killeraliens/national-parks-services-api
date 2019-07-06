@@ -42,7 +42,7 @@ function fetchParks(query, state, limit) {
 
     const urlRoot = 'https://developer.nps.gov/api/v1/parks?';
     const url = urlRoot + returnQueryString(params);
-    console.log(url);
+  
     fetch(url)
         .then(response => {
             if (response.ok) {
