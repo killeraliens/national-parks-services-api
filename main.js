@@ -16,7 +16,8 @@ function renderParks(responseJson) {
                 <p>${park.description}</p>
                 <p><a href="${park.url}">View ${park.name}'s details</a></p>
             </li>`
-            )
+            );
+            $('#results-section').removeClass('hidden');
         });
     } else {
         renderNoResults();
@@ -29,20 +30,25 @@ function returnQueryString(params) {
     }).join('&');
 }
 
-// function fetchParks(query, state, limit) {
-function fetchParks(query, limit) {
-
+function fetchParks(query, states, limit) {
+    // console.log(states);
     const params = {};
 
     params.q = query;
+
+    if (states.length > 0) {
+        // console.log(states);
+        params.stateCode = states;
+    }
+
     params.limit = limit || 10;
-    // if (state !== null) {
-    //     params.stateCode = state;
-    // }
+
     params.api_key = config.PARKS_API;
 
     const urlRoot = 'https://developer.nps.gov/api/v1/parks?';
     const url = urlRoot + returnQueryString(params);
+
+    // console.log(url);
 
     fetch(url)
         .then(response => {
@@ -52,25 +58,36 @@ function fetchParks(query, limit) {
             throw new Error(response.statusText);
         })
         .then( responseJson => {
+            // console.log(responseJson);
             renderParks(responseJson);
         })
         .catch(err => {
+            // console.log(err.message);
             renderError(err.message);
         })
 }
 
-function listenToForm() {
+function listenToForm(states) {
     $('#search-form').on('submit', (e) => {
         e.preventDefault();
         const query = $('#search-input').val();
         const limit = $('#results-count').val();
-        // const state = $('#states-select').val();
+        const state = states;
         $('#results-list').empty();
         $('#error-message').text('');
-
-        // fetchParks(query, state, limit);
-        fetchParks(query, limit);
+        fetchParks(query, state, limit);
     })
+}
+
+function listenToDropdown() {
+    const states = [];
+    $('#states-select').change(function(e){
+        states.push(e.target.value);
+        $('#state-filters-added').removeClass('hidden');
+        $('#state-filters-added span').text(`${states.join(', ')}`);
+        $(this).val('');
+    });
+    return states;
 }
 
 function clearForm() {
@@ -79,6 +96,10 @@ function clearForm() {
         $('#search-input').val('');
         $('#results-count').val('');
         $('#states-select').val('');
+        $('#state-filters-added span').text('')
+        $('#state-filters-added span').addClass('hidden');
+        $('#results-section').addClass('hidden');
+
     })
 }
 
@@ -91,6 +112,6 @@ function statesDropdown(statesArr) {
 }
 
 
-listenToForm();
+listenToForm(listenToDropdown());
 clearForm();
 statesDropdown(states);

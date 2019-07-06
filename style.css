@@ -97,3 +97,12 @@ li {
         font-size: 14px;
     }
 }
+
+#state-filters-added {
+    margin-top: 0;
+}
+
+.hidden {
+    display: none;
+    transition: display 2s;
+}
