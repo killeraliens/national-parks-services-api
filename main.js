@@ -29,20 +29,21 @@ function returnQueryString(params) {
     }).join('&');
 }
 
-function fetchParks(query, state, limit) {
+// function fetchParks(query, state, limit) {
+function fetchParks(query, limit) {
 
     const params = {};
 
     params.q = query;
     params.limit = limit || 10;
-    if (state !== null) {
-        params.stateCode = state;
-    }
+    // if (state !== null) {
+    //     params.stateCode = state;
+    // }
     params.api_key = config.PARKS_API;
 
     const urlRoot = 'https://developer.nps.gov/api/v1/parks?';
     const url = urlRoot + returnQueryString(params);
-  
+
     fetch(url)
         .then(response => {
             if (response.ok) {
@@ -63,11 +64,12 @@ function listenToForm() {
         e.preventDefault();
         const query = $('#search-input').val();
         const limit = $('#results-count').val();
-        const state = $('#states-select').val();
+        // const state = $('#states-select').val();
         $('#results-list').empty();
         $('#error-message').text('');
 
-        fetchParks(query, state, limit);
+        // fetchParks(query, state, limit);
+        fetchParks(query, limit);
     })
 }
 
