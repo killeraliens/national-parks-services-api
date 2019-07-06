@@ -97,7 +97,7 @@ function clearForm() {
         $('#results-count').val('');
         $('#states-select').val('');
         $('#state-filters-added span').text('')
-        $('#state-filters-added span').addClass('hidden');
+        $('#state-filters-added').addClass('hidden');
         $('#results-section').addClass('hidden');
 
     })
