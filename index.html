@@ -19,8 +19,14 @@
       <form id="search-form" action="get">
           <div class="fields-wrap">
               <fieldset>
-                  <label for="state-input">Enter a state</label>
-                  <input id="state-input" aria-label="input state" type="text">
+                  <label for="search-input">Search Parks</label>
+                  <input id="search-input" aria-label="search input" type="text">
+              </fieldset>
+              <fieldset>
+                  <label for="states-select">State</label>
+                  <select name="states" id="states-select" >
+                      <option value="" selected disabled hidden>Filter By State</option>
+                  </select>
               </fieldset>
               <fieldset>
                   <label for="results-count">Max results</label>
@@ -28,6 +34,7 @@
               </fieldset>
           </div>
           <button type="submit">Find Parks</button>
+          <button type="button" id="clear-form">Clear Form</button>
       </form>
   </header>
   <main>
@@ -37,6 +44,8 @@
       <p id="error-message" class="error-message"></p>
   </main>
 </div>
+  <script src="config.js"></script>
+  <script src="states.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

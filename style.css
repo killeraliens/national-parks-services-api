@@ -2,10 +2,15 @@
 
 body {
     font-family: 'Source Sans Pro', sans-serif;
+    background-color: rgba(220, 220, 220, 0.6);
 }
 
 body * {
     box-sizing: border-box;
+}
+
+a {
+    color: darkslategrey;
 }
 
 .container {
@@ -26,23 +31,64 @@ fieldset {
     flex-grow: 1;
 }
 
-fieldset:nth-child(2) {
+fieldset:nth-child(2), fieldset:nth-child(3) {
     margin-left: 10px;
     flex-grow: 0;
 }
 
 label {
-display: block;
+    display: block;
 }
 
 input {
-width: 100%;
+    width: 100%;
 }
 
-button, input {
-height: 30px;
-padding: 0 10px;
+button, input, select {
+    height: 30px;
+    padding: 0 10px;
+    border: 1px solid #9c9c9c;
+    outline: none;
+}
+
+button {
+    margin-right: 5px;
+    background-color: rgb(91, 169, 157);
+}
+
+#clear-form {
+    background-color: rgb(193, 193, 193);
+}
+
+select {
+    background-color: white;
 }
 
 
+span {
+    font-weight: bold;
+}
+
+i {
+    margin-right: 5px;
+}
+
+ul {
+    list-style: none;
+    padding: 0px;
+}
+
+li {
+    margin-bottom: 20px;
+    background-color: rgba(162, 185, 135, 0.54);
+    padding: 0px 15px;
+    border: 1px solid #9c9c9c;
+    mso-border-shadow: 0 0 5px lightgrey;
+}
+
+#error-message {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+}
 
