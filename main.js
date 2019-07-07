@@ -1,3 +1,7 @@
+// this global object collects the 'state' of the states array param for the form submittal
+// it is altered on the states dropdown selection, and the 'clear form' button
+const searchStates = { states: [] };
+
 function renderNoResults() {
     $('#error-message').text('No Results');
 }
@@ -31,7 +35,7 @@ function returnQueryString(params) {
 }
 
 function fetchParks(query, states, limit) {
-    // console.log(states);
+     console.log(states);
     const params = {};
 
     params.q = query;
@@ -67,40 +71,43 @@ function fetchParks(query, states, limit) {
         })
 }
 
-function listenToForm(states) {
+function listenToForm() {
     $('#search-form').on('submit', (e) => {
         e.preventDefault();
         const query = $('#search-input').val();
         const limit = $('#results-count').val();
-        const state = states;
+        const states = searchStates.states;
         $('#results-list').empty();
         $('#error-message').text('');
-        fetchParks(query, state, limit);
+        fetchParks(query, states, limit);
     })
 }
 
+
 function listenToDropdown() {
-    const states = [];
     $('#states-select').change(function(e){
-        states.push(e.target.value);
+        searchStates.states.push(e.target.value);
         $('#state-filters-added').removeClass('hidden');
-        $('#state-filters-added span').text(`${states.join(', ')}`);
+        $('#state-filters-added span').text(`${searchStates.states.join(', ')}`);
         $(this).val('');
     });
-    return states;
 }
 
 function clearForm() {
     $('#clear-form').on('click', (e) => {
-        $('#results-list').empty();
-        $('#search-input').val('');
-        $('#results-count').val('');
-        $('#states-select').val('');
-        $('#state-filters-added span').text('')
-        $('#state-filters-added').addClass('hidden');
-        $('#results-section').addClass('hidden');
-
+        emptyElements();
     })
+}
+
+function emptyElements() {
+    $('#results-list').empty();
+    $('#search-input').val('');
+    $('#results-count').val('');
+    $('#states-select').val('');
+    $('#state-filters-added span').text('');
+    $('#state-filters-added').addClass('hidden');
+    $('#error-message').text('');
+    searchStates.states = [];
 }
 
 function statesDropdown(statesArr) {
@@ -111,7 +118,7 @@ function statesDropdown(statesArr) {
     });
 }
 
-
-listenToForm(listenToDropdown());
+listenToDropdown();
+listenToForm();
 clearForm();
 statesDropdown(states);
