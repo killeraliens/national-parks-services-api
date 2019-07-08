@@ -19,18 +19,20 @@
       <form id="search-form" action="get">
           <div class="fields-wrap">
               <fieldset>
-                  <label for="search-input">Search Term</label>
-                  <input id="search-input" aria-label="search input" type="text">
-              </fieldset>
-              <fieldset>
-                  <label for="states-select">States</label>
-                  <select name="states" id="states-select" >
-                      <option value="" selected disabled hidden>Filter By State</option>
-                  </select>
+                  <label for="search-input">Enter a keyword for the park</label>
+                  <input id="search-input" aria-label="search input" type="text" placeholder="e.g. lakes">
               </fieldset>
               <fieldset>
                   <label for="results-count">Max results</label>
                   <input id="results-count" type="number" value="10">
+              </fieldset>
+          </div>
+          <div class="fields-wrap">
+              <fieldset>
+                  <label for="states-select">State<span class="note">*Select from the dropdown multiple times for additional states</span></label>
+                  <select name="states" id="states-select" >
+                      <option value="" selected disabled hidden>Filter By State </option>
+                  </select>
               </fieldset>
           </div>
           <p id="state-filters-added" class="hidden">Limit results to.. <span></span></p>
